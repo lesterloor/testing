@@ -1,0 +1,100 @@
+head
+  include head.pug
+body
+  include nav.pug
+  .containermain
+      
+      #mainContainer.container.is-login
+          #logInForm.card.card--login.shadow-2dp
+                form(method="post" action="/login")
+                  .card__content
+                          .inputfield
+                                  input.inputfield__input(type="text")
+                                  label.inputfield__label Username
+                                  span.inputfield__underline
+                          .inputfield
+                                  input.inputfield__input(type="password")
+                                  label.inputfield__label Password
+                                  span.inputfield__underline
+                          span.toggle.toggle--block.toggle--center
+                                  input#remember.toggle__input(type="checkbox")
+                                  label.toggle__label(for="remember") Remember me?
+                                  label.toggle__checkbox(for="remember")
+                                          span.sr-only Toggle remember me.
+                                          svg.toggle__checkbox-mark(viewbox="0 0 18 18", aria-label="check")
+                                                  path(d="M6.61 11.89L3.5 8.78 2.44 9.84 6.61 14l8.95-8.95L14.5 4z")
+                          p.text-center
+                                  a(href="#", data-toggle="form", data-target="amnesiaForm", data-type="amnesia") Forgot your password?
+                  .card__action
+                          button.btn.btn--primary.btn--block(type="submit")
+                                  | Sign in
+                  .card__action
+                          button.btn.btn--secondry.btn--block(data-toggle="form", data-target="registerForm", data-type="register", type="button")
+                                  | Register
+          #amnesiaForm.card.card--amnesia.shadow-2dp
+                  .card__content
+                          .inputfield
+                                  input.inputfield__input(type="email")
+                                  label.inputfield__label Email
+                                  span.inputfield__underline
+                  .card__action
+                          button.btn.btn--flat.btn--primary(type="button")
+                                  | Reset password
+                          button.btn.btn--flat(data-toggle="form", data-target="logInForm", data-type="login", type="button")
+                                  | Cancel
+          #registerForm.card.card--register.shadow-2dp.is-active
+                form(method="post" action="/register")
+                  .card__content
+                          .inputfield
+                                  input.inputfield__input(type="email" name="email")
+                                  label.inputfield__label
+                                          | Email 
+                                          i.required *
+                                  span.inputfield__underline
+                          .inputfield
+                                  input.inputfield__input(type="text" name="username")
+                                  label.inputfield__label
+                                          | Username 
+                                          i.required *
+                                  span.inputfield__underline
+                          .inputfield
+                                  input.inputfield__input(type="password" name="password")
+                                  label.inputfield__label
+                                          | Password 
+                                          i.required *
+                                  span.inputfield__underline
+                          .inputfield
+                                  input.inputfield__input(type="password" name="passwordMatch")
+                                  label.inputfield__label
+                                          | Password Confirm 
+                                          i.required *
+                                  span.inputfield__underline
+                          //- span.toggle.toggle--block
+                                  input#subscribe.toggle__input(type="checkbox")
+                                  //- label.toggle__label(for="subscribe") Subscribe to our newsletter?
+                                  //- label.toggle__checkbox(for="subscribe")
+                                          span.sr-only Toggle newsletter subscription.
+                                          svg.toggle__checkbox-mark(viewbox="0 0 18 18", aria-label="check")
+                                                  path(d="M6.61 11.89L3.5 8.78 2.44 9.84 6.61 14l8.95-8.95L14.5 4z")
+                          //- span.toggle.toggle--block
+                                  input#terms.toggle__input(type="checkbox")
+                                  label.toggle__label(for="terms")
+                                          | Agree to terms and conditions? 
+                                          i.required *
+                                  label.toggle__checkbox(for="terms")
+                                          span.sr-only Toggle terms and conditions agreement.
+                                          svg.toggle__checkbox-mark(viewbox="0 0 18 18", aria-label="check")
+                                                  path(d="M6.61 11.89L3.5 8.78 2.44 9.84 6.61 14l8.95-8.95L14.5 4z")
+                          if errors
+                            ul.errors
+                              each error in errors
+                                div.alertdiv= error.msg
+                  .card__action
+                          button.btn.btn--primary.btn--block(type="submit")
+                                  | Create account
+                  .card__action
+                          button.btn.btn--secondry.btn--block(data-toggle="form", data-target="logInForm", data-type="login", type="button")
+                                  | Log in
+
+
+script(src="/js/main.js")

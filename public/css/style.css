@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: url("http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/crossword.png");
+}
+/* SMARTPHONES PORTRAIT */
+@media only screen and (min-width: 300px) {
+.containermain{
+  width:85%;
+  margin:100px auto;
+  background-color: #00bcd4;
+}
+
+}
+
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (min-width: 480px) {
+.containermain{
+  width:480px;
+  margin:0px auto;
+  background-color: #00bcd4;
+
+}
+
+}
+
+/* TABLETS PORTRAIT */
+@media only screen and (min-width: 768px) {
+.containermain{
+  width:400px;
+  margin:100px auto;
+  background-color: #00bcd4;
+
+}
+
+}
+
+
+/* TABLET LANDSCAPE / DESKTOP */
+@media only screen and (min-width: 1024px) {
+.containermain{
+  width:500px;
+  margin:100px auto;
+  background-color: #00bcd4;
+
+}
+
+}
+
+.alertdiv{
+  background-color: red;
+  width:100%;
+  padding:10px!important;
+  margin:5px 0!important;
+
+}
+ul {
+  padding:0!important;
+  margin:0;
+}
