@@ -2,9 +2,9 @@ head
   include head.pug
 body
   include nav.pug
-  .containermain
-      
-      #mainContainer.container.is-login
+  .containermain(style="margin:0; width:100%;background-color:transparent;")
+    canvas
+    #mainContainer.container.is-login
           #logInForm.card.card--login.shadow-2dp
                 form(method="post" action="/login")
                   .card__content

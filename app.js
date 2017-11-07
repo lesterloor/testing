@@ -10,10 +10,11 @@ var users = require('./routes/users');
 var connection = require('./db.js');
 var expressValidator = require('express-validator');
 var session = require('express-session');
-var SequelizeStore = require('connect-session-sequelize')(session.Store);
+var passport = require('passport');
+var Sequelize = require('sequelize');
+
 
 //authentication packages
-var passport = require('passport')
 
 
 var app = express();
@@ -38,18 +39,22 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+connect().use(connect.session({
+    store: new SequelizeStore(options),
+    secret: 'keyboard ifunnymeme',
+    resave: false,
+    saveUninitialized: false,
+}));
 
-app.use(session({
-  secret: 'keyboard ifunnymeme',
-  resave: false,
-  saveUninitialized: false,
-  store: new SequelizeStore({
-  db: connection
-  })
-  // cookie: { secure: true }
-}))
+// app.use(session({
+//   secret: 'keyboard ifunnymeme',
+//   resave: false,
+//   saveUninitialized: false,
+// }))
+
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use('/', index);
 app.use('/users', users);

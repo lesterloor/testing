@@ -9,13 +9,17 @@ const someOtherPlaintextPassword = 'not_bacon';
 var passport = require('passport')
 var session = require('express-session');
 var SequelizeStore = require('connect-session-sequelize')(session.Store);
+var User = require('../db.js');
 
 router.use(express.static("public"));
 /* GET home page. */
-router.get('/profile', function(req, res, next) {
+router.get('/profile', function(req, res) {
   console.log(req.user);
   console.log(req.isAuthenticated());
-  res.render('profile', { title: 'Register' });
+    User.findById(req.user).then(function(username){
+          console.log(username.username);
+           res.render('profile',{usercurrent:username.username});
+        });
 });
 router.get('/', function(req, res, next) {
   res.render('home', { title: 'Register' });
@@ -39,7 +43,6 @@ router.post('/register', function(req, res, next) {
     const username = req.body.username
     const email = req.body.email
     const password = req.body.password
-    var User = require('../db.js');
     bcrypt.hash(password, saltRounds, function(err, hash) {
       // Store hash in your password DB.
       User.create({
@@ -48,8 +51,8 @@ router.post('/register', function(req, res, next) {
         password: hash
       }).then(function(results) {
         const user_id = results.id;
-        const userName = results.username;
-        console.log(results.id);
+        const userName = results.dataValues.username;
+        console.log(results.dataValues.username);
         req.login(user_id, function(err) {
           res.redirect('profile');
         });

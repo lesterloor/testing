@@ -1,7 +1,7 @@
 
 
 const Sequelize = require('sequelize');
-const connection = new Sequelize('ifunnymeme', 'admin', '', {
+const connection = new Sequelize('ifunnymeme', 'lester', '', {
   host: 'localhost',
   dialect: 'postgres',
 
